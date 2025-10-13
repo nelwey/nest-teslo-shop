@@ -27,6 +27,7 @@ cp .env.template .env
 ### 🐳 Run with Docker
 ```bash
 docker compose --env-file .env up -d --build
+OR docker compose -f docker-compose.dev.yml --env-file .env up
 ```
 
 #### After build, you can simply start next time with:
