@@ -1,7 +1,6 @@
-import { existsSync } from 'fs';
-import { join } from 'path';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { resolveProductImagePath } from './helpers';
 
 
 @Injectable()
@@ -9,10 +8,10 @@ export class FilesService {
   
     getStaticProductImage( imageName: string ) {
 
-        const path = join( __dirname, '../../static/products', imageName );
+        const path = resolveProductImagePath(imageName);
 
-        if ( !existsSync(path) ) 
-            throw new BadRequestException(`No product found with image ${ imageName }`);
+        if ( !path ) 
+            throw new NotFoundException(`No product found with image ${ imageName }`);
 
         return path;
     }

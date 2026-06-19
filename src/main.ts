@@ -3,8 +3,11 @@ import { ValidationPipe, Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
+import { ensureUploadsDirectory } from './files/helpers';
 
 async function bootstrap() {
+  ensureUploadsDirectory();
+
   const app = await NestFactory.create(AppModule);
   const logger = new Logger('Bootstrap');
 

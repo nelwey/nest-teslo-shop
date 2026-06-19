@@ -16,7 +16,7 @@ import { Response } from 'express';
 import { diskStorage } from 'multer';
 import { FilesService } from './files.service';
 
-import { fileFilter, fileNamer } from './helpers';
+import { fileFilter, fileNamer, UPLOADS_PRODUCTS_PATH } from './helpers';
 
 @ApiTags('Files - Get and Upload')
 @Controller('files')
@@ -42,7 +42,7 @@ export class FilesController {
       fileFilter: fileFilter,
       // limits: { fileSize: 1000 }
       storage: diskStorage({
-        destination: './static/products',
+        destination: UPLOADS_PRODUCTS_PATH,
         filename: fileNamer,
       }),
     }),

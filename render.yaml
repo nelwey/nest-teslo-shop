@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: teslo-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: STAGE
+        value: prod
+      - key: UPLOADS_PATH
+        value: /app/data/uploads
+    disk:
+      name: product-uploads
+      mountPath: /app/data/uploads
+      sizeGB: 1
